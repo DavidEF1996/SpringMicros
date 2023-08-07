@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "9721c054-7223-4147-befc-1c4361e1a223",
+		"name": "TercerProyecto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createCalificacion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"hotelId\":\"831a92d6-a997-4994-aba4-5601b6ae4f28\",\r\n    \"usuarioId\":\"6b46a045-5e4e-4efa-b4e2-f504d3a2e316\",\r\n    \"calificaciones\":10,\r\n    \"observaciones\":\"Nada que decir\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"calificaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCalificaciones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"calificaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getByHotels",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/calificaciones/hoteles/831a92d6-a997-4994-aba4-5601b6ae4f28",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"calificaciones",
+						"hoteles",
+						"831a92d6-a997-4994-aba4-5601b6ae4f28"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getByUsuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/calificaciones/usuarios/6b46a045-5e4e-4efa-b4e2-f504d3a2e316",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"calificaciones",
+						"usuarios",
+						"6b46a045-5e4e-4efa-b4e2-f504d3a2e316"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
