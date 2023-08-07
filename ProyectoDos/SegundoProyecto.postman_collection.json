@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "ef6ab1ae-5a7d-40bb-8382-8e93c39c3dca",
+		"name": "SegundoProyecto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createHotel",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Hotel Uno\",\r\n    \"ubicacion\":\"popayan y puerto principe\",\r\n    \"informacion\":\"esta es la informacion\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/hoteles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"hoteles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getHotel",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/hoteles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"hoteles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getHotel",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/hoteles/831a92d6-a997-4994-aba4-5601b6ae4f2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"hoteles",
+						"831a92d6-a997-4994-aba4-5601b6ae4f2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

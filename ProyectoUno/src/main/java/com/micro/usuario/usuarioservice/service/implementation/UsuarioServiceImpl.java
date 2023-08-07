@@ -30,6 +30,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario getUsuario(String userId) {
-        return usuarioRepository.findById(userId).orElseThrow(()-> new ResourceNotFoundException("Usuario no encontrado con el id: " + userId));
+        return usuarioRepository.findById(userId).orElseThrow(()->
+                new ResourceNotFoundException("Usuario no encontrado con el id: " + userId));
     }
 }
