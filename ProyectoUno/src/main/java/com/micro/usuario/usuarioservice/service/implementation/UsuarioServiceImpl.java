@@ -4,6 +4,7 @@ import com.micro.usuario.usuarioservice.entity.Calificacion;
 import com.micro.usuario.usuarioservice.entity.Hotel;
 import com.micro.usuario.usuarioservice.entity.Usuario;
 import com.micro.usuario.usuarioservice.exceptions.ResourceNotFoundException;
+import com.micro.usuario.usuarioservice.external.services.HotelService;
 import com.micro.usuario.usuarioservice.repository.UsuarioRepository;
 import com.micro.usuario.usuarioservice.service.UsuarioService;
 import org.slf4j.Logger;
@@ -29,6 +30,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private HotelService hotelService;
+
     @Override
     public Usuario saveUser(Usuario usuario) {
         String userRamdom = UUID.randomUUID().toString();
@@ -43,7 +47,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 
     //RESTEMPLATE
-    @Override
+  /*  @Override
     public Usuario getUsuario(String userId) {
         //En este método se comunicaran los dos microservicios con este
 
@@ -79,9 +83,41 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         //6. Devolvemos el usuario al cliente con toda la información
         return usuario;
-    }
+    }*/
 
 
 
     //FEIGN
+        @Override
+    public Usuario getUsuario(String userId) {
+        //En este método se comunicaran los dos microservicios con este
+
+        //1. Obtenemos el usuario actual
+        Usuario usuario = usuarioRepository.findById(userId).orElseThrow(()->
+                new ResourceNotFoundException("Usuario no encontrado con el id: " + userId));
+
+        //2. Con resttemplate, obtenemos la o las calificaciones en una arreglo
+       Calificacion [] arregloCalificaciones = restTemplate.getForObject("http://CALIFICACION-SERVICE/calificaciones/usuarios/"+ usuario.getUsuarioId(), Calificacion[].class);
+
+       //3. Ahora pasamos el arreglo a una lista para poder iterarla y modificar sus propiedades
+       List<Calificacion> listaCalificaciones = Arrays.stream(arregloCalificaciones).collect(Collectors.toList());
+
+       //4. Iteramos las calificaciones y vamos a setear el valor del hotel en la clase calificaciones y devolver el nuevo arreglo
+        List<Calificacion> modificacionCalificaciones = listaCalificaciones.stream().map(calificacion -> {
+
+            // SE APLICA LA BÚSQUEDA CON EL CLIENTE Feigh 
+            Hotel hotel = hotelService.getHotel(calificacion.getHotelId());
+
+            calificacion.setHotel(hotel);
+
+            return calificacion;
+        }).collect(Collectors.toList());
+
+
+        //5. Seteamos la lista obtenida anteriormente en la propiedad calificaciones de la clase usuario
+        usuario.setCalificaciones(modificacionCalificaciones);
+
+        //6. Devolvemos el usuario al cliente con toda la información
+        return usuario;
+    }
 }
