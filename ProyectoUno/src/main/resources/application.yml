@@ -4,8 +4,8 @@ server:
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/micro_primer_proyecto
-    username: root
-    password:
+    username: user_name
+    password: password
     driver: com.mysql.cj.jdbc.Driber
 
   jpa:
