@@ -1,27 +1,28 @@
 package com.micro.usuario.usuarioservice.service.implementation;
 
 import com.micro.usuario.usuarioservice.entity.Calificacion;
+import com.micro.usuario.usuarioservice.entity.CalificacionTrama;
 import com.micro.usuario.usuarioservice.entity.Hotel;
 import com.micro.usuario.usuarioservice.entity.Usuario;
 import com.micro.usuario.usuarioservice.exceptions.ResourceNotFoundException;
+import com.micro.usuario.usuarioservice.external.services.CalificacionServiceFeigth;
 import com.micro.usuario.usuarioservice.external.services.HotelService;
 import com.micro.usuario.usuarioservice.repository.UsuarioRepository;
+import com.micro.usuario.usuarioservice.service.CalificacionService;
 import com.micro.usuario.usuarioservice.service.UsuarioService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class UsuarioServiceImpl implements UsuarioService {
+public class UsuarioServiceImpl implements UsuarioService, CalificacionService {
 
     private Logger logger = LoggerFactory.getLogger(UsuarioService.class);
 
@@ -32,6 +33,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     private HotelService hotelService;
+
+    @Autowired
+    private CalificacionServiceFeigth calificacionServiceFeigth;
+
+
 
     @Override
     public Usuario saveUser(Usuario usuario) {
@@ -105,7 +111,7 @@ public class UsuarioServiceImpl implements UsuarioService {
        //4. Iteramos las calificaciones y vamos a setear el valor del hotel en la clase calificaciones y devolver el nuevo arreglo
         List<Calificacion> modificacionCalificaciones = listaCalificaciones.stream().map(calificacion -> {
 
-            // SE APLICA LA BÚSQUEDA CON EL CLIENTE Feigh 
+            // SE APLICA LA BÚSQUEDA CON EL CLIENTE Feigh
             Hotel hotel = hotelService.getHotel(calificacion.getHotelId());
 
             calificacion.setHotel(hotel);
@@ -119,5 +125,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         //6. Devolvemos el usuario al cliente con toda la información
         return usuario;
+    }
+
+
+    @Override
+    public CalificacionTrama guardarCalificacionTrama(CalificacionTrama calificacionTrama) {
+        return calificacionServiceFeigth.guardarCalificacionFeiht(calificacionTrama);
     }
 }
