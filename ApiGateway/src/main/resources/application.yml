@@ -1,5 +1,6 @@
+
 server:
-  port: 8085
+  port: 8084
 
 spring:
   application:
@@ -11,12 +12,12 @@ spring:
         - id: USUARIO-SERVICE
           uri: lb://USUARIO-SERVICE
           predicates:
-            - Path=/usuarios/**
+            - Path=/usuarios/**,/segundoControlador/**
 
         - id: HOTEL-SERVICE
           uri: lb://HOTEL-SERVICE
           predicates:
-            - Path=/hoteles/**,/staffs/**
+            - Path=/hoteles/**
 
         - id: CALIFICACION-SERVICE
           uri: lb://CALIFICACION-SERVICE
@@ -26,9 +27,8 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true
-
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      default-zone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka

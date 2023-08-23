@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7dd9424d-8923-4d6c-913e-e9ec65254ba5",
+		"_postman_id": "0d927a95-ca6b-4127-96f3-34aa3f1886a9",
 		"name": "PrimerProyecto",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -39,12 +39,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/usuarios",
+					"raw": "http://localhost:8084/usuarios",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8084",
 					"path": [
 						"usuarios"
 					]
@@ -58,15 +58,34 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/usuarios/f777ca0d-388a-4823-a779-e77d245ee4c",
+					"raw": "http://localhost:8084/usuarios/15f69095-f2be-452e-8dda-03450986aa2a",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8084",
 					"path": [
 						"usuarios",
-						"f777ca0d-388a-4823-a779-e77d245ee4c"
+						"15f69095-f2be-452e-8dda-03450986aa2a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "secondController",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/segundoControlador",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"segundoControlador"
 					]
 				}
 			},

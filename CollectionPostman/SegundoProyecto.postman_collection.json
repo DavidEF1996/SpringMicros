@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ef6ab1ae-5a7d-40bb-8382-8e93c39c3dca",
+		"_postman_id": "6712ffe5-5de1-4960-b28d-776b4240655c",
 		"name": "SegundoProyecto",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -39,12 +39,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/hoteles",
+					"raw": "http://localhost:8084/hoteles",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8084",
 					"path": [
 						"hoteles"
 					]
