@@ -5,6 +5,7 @@ import com.micro.usuario.usuarioservice.entity.Usuario;
 import com.micro.usuario.usuarioservice.external.services.CalificacionServiceFeigth;
 import com.micro.usuario.usuarioservice.service.CalificacionService;
 import com.micro.usuario.usuarioservice.service.UsuarioService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +36,20 @@ public class UsuarioController {
       }
 
       @GetMapping("/{idUser}")
+      @CircuitBreaker(name = "ratingHotelBreaker", fallbackMethod = "ratingHotelFallback")
     public ResponseEntity<Usuario> getUser(@PathVariable String idUser){
          return ResponseEntity.ok().body(usuarioService.getUsuario(idUser));
+      }
+
+
+      public ResponseEntity<Usuario> ratingHotelFallback (String usuarioId, Exception exception){
+          System.out.println("Esto aparece cuando no hay un usuario encontrado");
+          Usuario usuario = Usuario.builder()
+                  .nombre("root")
+                  .email("correo@correo.com")
+                  .informacion("Informacion")
+                  .usuarioId("1234").build();
+          return new ResponseEntity<>(usuario, HttpStatus.OK);
       }
 
     @PostMapping("/feiht")

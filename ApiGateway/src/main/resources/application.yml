@@ -9,8 +9,8 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: USUARIO-SERVICE
-          uri: lb://USUARIO-SERVICE
+        - id: CONFIG-PROD
+          uri: lb://CONFIG-PROD
           predicates:
             - Path=/usuarios/**,/segundoControlador/**
 
@@ -19,8 +19,8 @@ spring:
           predicates:
             - Path=/hoteles/**
 
-        - id: CALIFICACION-SERVICE
-          uri: lb://CALIFICACION-SERVICE
+        - id: CONFIG-DEV
+          uri: lb://CONFIG-DEV
           predicates:
             - Path=/calificaciones/**
 

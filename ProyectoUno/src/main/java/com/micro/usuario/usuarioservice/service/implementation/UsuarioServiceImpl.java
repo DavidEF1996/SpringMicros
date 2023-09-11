@@ -103,7 +103,7 @@ public class UsuarioServiceImpl implements UsuarioService, CalificacionService {
                 new ResourceNotFoundException("Usuario no encontrado con el id: " + userId));
 
         //2. Con resttemplate, obtenemos la o las calificaciones en una arreglo
-       Calificacion [] arregloCalificaciones = restTemplate.getForObject("http://CALIFICACION-SERVICE/calificaciones/usuarios/"+ usuario.getUsuarioId(), Calificacion[].class);
+       Calificacion [] arregloCalificaciones = restTemplate.getForObject("http://CONFIG-DEV/calificaciones/usuarios/"+ usuario.getUsuarioId(), Calificacion[].class);
 
        //3. Ahora pasamos el arreglo a una lista para poder iterarla y modificar sus propiedades
        List<Calificacion> listaCalificaciones = Arrays.stream(arregloCalificaciones).collect(Collectors.toList());
