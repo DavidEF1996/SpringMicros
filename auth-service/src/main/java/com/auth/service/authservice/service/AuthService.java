@@ -49,7 +49,12 @@ public class AuthService {
             return  null;
         }
 
-        if(passwordEncoder.matches(authUserDto.getPassword(), authUser.get().getPassword())){
+       String passordRaw = authUserDto.getPassword();
+       String passwordEncript = authUser.get().getPassword();
+
+        System.out.println(passordRaw + " " + passwordEncript);
+        if(passwordEncoder.matches(authUserDto.getPassword(), passwordEncript)){
+            authUser.get().getPassword();
             return new TokenDto(jwtProvider.createToken(authUser.get()));
         }
 

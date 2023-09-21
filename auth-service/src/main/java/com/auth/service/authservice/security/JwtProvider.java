@@ -8,11 +8,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.*;
 @Component
 public class JwtProvider {
 
@@ -31,14 +27,15 @@ public class JwtProvider {
     public String createToken(AuthUser authUser){
         Map<String, Object> claims = new HashMap<>();
         claims = Jwts.claims().setSubject(authUser.getUserName());
-        claims.put("id", authUser.getId());
+        claims.put("id",authUser.getId());
         Date now = new Date();
-        Date exp = new Date(now.getTime()+3600000);
+        Date exp = new Date(now.getTime() + 3600000);
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(exp)
-                .signWith(SignatureAlgorithm.HS256, secret).compact();
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
     }
 
 

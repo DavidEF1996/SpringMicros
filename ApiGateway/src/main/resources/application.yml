@@ -13,6 +13,8 @@ spring:
           uri: lb://CONFIG-PROD
           predicates:
             - Path=/usuarios/**,/segundoControlador/**
+          filters:
+            - AuthFilter
 
         - id: HOTEL-SERVICE
           uri: lb://HOTEL-SERVICE
@@ -23,6 +25,11 @@ spring:
           uri: lb://CONFIG-DEV
           predicates:
             - Path=/calificaciones/**
+
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
 
 eureka:
   instance:
