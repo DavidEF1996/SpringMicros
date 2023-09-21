@@ -31,6 +31,7 @@ public class AuthController {
 
     @PostMapping("/validate")
     ResponseEntity<TokenDto> validar (@RequestParam String token){
+        System.out.println("Estoy llegando");
       TokenDto recibir =   authService.validate(token);
       if(recibir != null){
           return ResponseEntity.ok(recibir);

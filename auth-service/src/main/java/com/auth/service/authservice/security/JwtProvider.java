@@ -3,11 +3,13 @@ package com.auth.service.authservice.security;
 
 import com.auth.service.authservice.entity.AuthUser;
 import io.jsonwebtoken.Jwts;
+
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.security.Key;
 import java.util.*;
 @Component
 public class JwtProvider {
@@ -15,6 +17,8 @@ public class JwtProvider {
     //Llave secreta que irá en  el token
     @Value("${jwt.secret}")
     private String secret;
+
+    //Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
 
     //metodo inicial que se lanzará cuando se cree la instancia de la clase y que codificara en base 64 y guardar en la variable secret la llave
@@ -30,10 +34,11 @@ public class JwtProvider {
         claims.put("id",authUser.getId());
         Date now = new Date();
         Date exp = new Date(now.getTime() + 3600000);
+        System.out.println("secret: " + secret);
+
         return Jwts.builder()
                 .setClaims(claims)
-                .setIssuedAt(now)
-                .setExpiration(exp)
+                .setIssuedAt(exp)
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
     }
@@ -45,6 +50,7 @@ public class JwtProvider {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return true;
         }catch (Exception e){
+            System.out.println(e.getMessage());
                 return false;
         }
 
