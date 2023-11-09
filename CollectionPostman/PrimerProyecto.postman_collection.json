@@ -8,11 +8,21 @@
 		{
 			"name": "createUser",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJGZXJuYW5kbyIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTk1NzE0NTN9.c1XiW8Oad1j-aKvQsg84bXXu_IqvR9HAPhkivQXcvL4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\":\"Fernando\",\r\n    \"email\":\"degasf_1996@hotmail.com\",\r\n    \"informacion\":\"Este es el segundo usuario\"\r\n}",
+					"raw": "{\r\n    \"nombre\":\"Fernando2\",\r\n    \"email\":\"degasf_1996@hotmail.com\",\r\n    \"informacion\":\"Este es el segundo usuario\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,12 +30,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/usuarios",
+					"raw": "http://localhost:8084/usuarios",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8084",
 					"path": [
 						"usuarios"
 					]
@@ -36,6 +46,16 @@
 		{
 			"name": "listUsers",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJGZXJuYW5kbyIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTk1NzE0NTN9.c1XiW8Oad1j-aKvQsg84bXXu_IqvR9HAPhkivQXcvL4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {

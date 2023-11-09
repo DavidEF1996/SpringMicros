@@ -9,3 +9,10 @@ spring:
 
 jwt:
    secret: secret
+
+
+admin-paths:
+    paths:
+      -
+        uri: "/usuarios"
+        method: "POST"

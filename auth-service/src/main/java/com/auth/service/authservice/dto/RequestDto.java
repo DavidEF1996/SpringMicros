@@ -1,17 +1,18 @@
 package com.auth.service.authservice.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 @Builder
-public class AuthUserDto {
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class RequestDto {
 
-    private String userName;
-    private String password;
-    private String role;
+     //se agrega la url del servicio y el metodo post, put, etc
+     private String uri;
+     private String method;
 }

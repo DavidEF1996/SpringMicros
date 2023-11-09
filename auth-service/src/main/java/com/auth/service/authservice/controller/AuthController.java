@@ -1,6 +1,8 @@
 package com.auth.service.authservice.controller;
 
 import com.auth.service.authservice.dto.AuthUserDto;
+import com.auth.service.authservice.dto.NewUserDto;
+import com.auth.service.authservice.dto.RequestDto;
 import com.auth.service.authservice.dto.TokenDto;
 import com.auth.service.authservice.entity.AuthUser;
 import com.auth.service.authservice.service.AuthService;
@@ -30,9 +32,9 @@ public class AuthController {
 
 
     @PostMapping("/validate")
-    ResponseEntity<TokenDto> validar (@RequestParam String token){
+    ResponseEntity<TokenDto> validar (@RequestParam String token, @RequestBody RequestDto requestDto){
         System.out.println("Estoy llegando");
-      TokenDto recibir =   authService.validate(token);
+      TokenDto recibir =   authService.validate(token, requestDto);
       if(recibir != null){
           return ResponseEntity.ok(recibir);
       }else{
@@ -44,7 +46,7 @@ public class AuthController {
 
 
     @PostMapping("/create")
-    ResponseEntity<AuthUser> crearUsuario (@RequestBody AuthUserDto authUserDto){
+    ResponseEntity<AuthUser> crearUsuario (@RequestBody NewUserDto  authUserDto){
         AuthUser recibir = authService.save(authUserDto);
 
         if(recibir!= null){

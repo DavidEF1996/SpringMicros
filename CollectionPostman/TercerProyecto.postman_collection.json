@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"hotelId\":\"831a92d6-a997-4994-aba4-5601b6ae4f28\",\r\n    \"usuarioId\":\"6b46a045-5e4e-4efa-b4e2-f504d3a2e316\",\r\n    \"calificaciones\":10,\r\n    \"observaciones\":\"Nada que decir\"\r\n\r\n}",
+					"raw": "{\r\n    \"hotelId\":\"19ffc739-c9a4-4158-84c1-a1e3f906bfd0\",\r\n    \"usuarioId\":\"9ebd248b-b168-4bba-8dbb-a62570b2497d\",\r\n    \"calificaciones\":10,\r\n    \"observaciones\":\"Nada que decir\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
