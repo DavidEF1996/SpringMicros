@@ -2,6 +2,7 @@ package com.msvc.order.orderservice.service;
 
 import com.msvc.order.orderservice.dto.OrderLineItemsDto;
 import com.msvc.order.orderservice.dto.OrderRequest;
+import com.msvc.order.orderservice.exceptions.OrderServiceException;
 import com.msvc.order.orderservice.model.OrderLineItems;
 import com.msvc.order.orderservice.model.OrderModel;
 import com.msvc.order.orderservice.repository.OrderRepository;
@@ -41,5 +42,23 @@ public class OrderService {
         orderLineItems.setPrice(orderLineItemsDto.getPrice());
         orderLineItems.setSkuCode(orderLineItemsDto.getSkuCode());
         return orderLineItems;
+    }
+
+
+
+
+
+    public List<OrderModel> getOrders() {
+        try {
+            List<OrderModel> order = orderRepository.findAll();
+            if (order.isEmpty()) {
+                throw new OrderServiceException("The list is empty");
+            }
+            return order;
+        } catch (OrderServiceException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new OrderServiceException("Error caused by, i don't know.", e);
+        }
     }
 }
